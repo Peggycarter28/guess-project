@@ -18,39 +18,59 @@
     />
   </head>
   <body>
+    <p class="alert"></p>
     <div class="container">
-      <div class="card">
+      <div id="card" class="card">
         <form class="user-info">
           <h1 class="header">Username</h1>
           <input
-            type=" number text"
+            type="text"
             placeholder="Enter your username "
-            class="email-input"
+            class="user-input"
           />
+          <button class="ok-btn">ok</button>
         </form>
-        <button class="ok-btn">ok</button>
       </div>
 
-      <!-- <section class="play-section">
-        <p>hello</p>
-        <p><span>How to Play</span></p>
-        <ul>
-          <li>
-            you pick any two numbers,a minimum
-            <input type="number" placeholder="min" class="min" /> and a maximum
-            <input type="number" placeholder="max" class="max" />.
-          </li>
-          <li>
-            Within the range of values that you have chosen, i will pick a
-            number.
-          </li>
-          <li>
-            You willl be given 5(five) trials to guess the number that i chode
-          </li>
-        </ul>
-        <p>Ready for this change</p>
-        <button play-btn>Play</button>
-      </section> -->
+      <section id="play-section" class="play-section">
+        <div class="card">
+          <form class="play-form">
+            <p class="user-name">hello</p>
+            <p><span>How to Play</span></p>
+            <ul>
+              <li>
+                you pick any two numbers,a minimum
+                <input type="number" placeholder="min" class="min" /> and a
+                maximum <input type="number" placeholder="max" class="max" />.
+              </li>
+              <li>
+                Within the range of values that you have chosen, i will pick a
+                number.
+              </li>
+              <li>
+                You willl be given 5(five) trials to guess the number that i
+                chode
+              </li>
+            </ul>
+            <p>Ready for this change</p>
+            <button class="play-btn">Play</button>
+          </form>
+        </div>
+      </section>
+      <section id="guess-number" class="guess-number">
+        <div class="card">
+          <form class="guess-form">
+            <h1>Guess The Number</h1>
+            <p>
+              can you guess the number between
+              <span class="minimum"></span>and <span class="maximum"></span>
+            </p>
+            <input type="number" class="guess-input" />
+            <input type="submit" value="submit" class="submit-btn" />
+            <p class="message"></p>
+          </form>
+        </div>
+      </section>
     </div>
     <footer>&copy;2025 Bacode Inc.</footer>
     <script src="index.js"></script>
