@@ -20,18 +20,11 @@ const warnning = document.querySelector(".alert");
 
 let minNumber = 1,
   max = 12,
-  winningNumber = 2,
   min = 1,
+  winningNumber = getRandomNum(min, max),
   guessLeft = 5;
 maximum.textContent = max;
 minimum.textContent = min;
-
-// guessForm.addEventListener("mousedown", function (e) {
-//   e.preventDefault();
-//   if (e.target.className === "submit-btn") {
-//     guessInput.reload();
-//   }
-// });
 
 function action(e) {
   let val = userInput.value.trim();
@@ -111,13 +104,15 @@ function onSubmit(e) {
     setMessage(msg);
     submitBtn.value = "PLAY AGAIN";
   }
-
-  function setMessage(msg, color) {
-    message.style.color = color;
-    message.textContent = msg;
-  }
 }
 
+function getRandomNum(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+function setMessage(msg, color) {
+  message.style.color = color;
+  message.textContent = msg;
+}
 guessForm.addEventListener("submit", onSubmit);
 playButton.addEventListener("click", play);
 okButton.addEventListener("click", action);
