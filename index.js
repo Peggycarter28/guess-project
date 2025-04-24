@@ -17,14 +17,10 @@ const maximum = document.querySelector(".maximum");
 const message = document.querySelector(".message");
 const submitBtn = document.querySelector(".submit-btn");
 const warnning = document.querySelector(".alert");
+const readyUser = document.querySelector(".ready-user");
 
-let minNumber = 1,
-  max = 12,
-  min = 1,
-  winningNumber = getRandomNum(min, max),
-  guessLeft = 5;
-maximum.textContent = max;
-minimum.textContent = min;
+let min, max, winningNumber;
+let guessLeft = 5;
 
 function action(e) {
   let val = userInput.value.trim();
@@ -41,16 +37,17 @@ function action(e) {
     card.style.display = "none";
     playSect.style.display = "block";
     userName.textContent += " " + val;
+    readyUser.textContent += " " + val;
   }
 }
-userName.textContent += " " + userInput.value;
+// userName.textContent += " " + userInput.value;
 function play(e) {
   e.preventDefault();
 
-  const minNum = parseInt(minInput.value);
-  const maxNum = parseInt(maxInput.value);
+  min = parseInt(minInput.value);
+  max = parseInt(maxInput.value);
 
-  if (maxNum - minNum === 10 || maxNum - minNum > 10) {
+  if (max - min === 10 || max - min > 10) {
     playSect.style.display = "none";
     guessForm.style.display = "block";
   } else {
@@ -64,11 +61,19 @@ function play(e) {
     minInput.value = "";
     maxInput.value = "";
     return;
-    ("");
   }
+  winningNumber = getRandomNum(min, max);
+  maximum.textContent = max;
+  minimum.textContent = min;
 }
+
 function onSubmit(e) {
   e.preventDefault();
+  if (submitBtn.classList.contains("play-again")) {
+    location.reload();
+    return;
+  }
+
   let guess = parseInt(guessInput.value);
 
   if (isNaN(guess) || guess > max || guess < min) {
@@ -95,15 +100,16 @@ function onSubmit(e) {
       "red"
     );
   }
-  function gameOver(won, msg) {
-    let color;
-    won === true ? (color = "green") : (color = "red");
-    guessInput.disabled = true;
-    guessInput.style.borderColor = color;
-    message.style.color = color;
-    setMessage(msg);
-    submitBtn.value = "PLAY AGAIN";
-  }
+}
+function gameOver(won, msg) {
+  let color;
+  won === true ? (color = "green") : (color = "red");
+  guessInput.disabled = true;
+  guessInput.style.borderColor = color;
+  message.style.color = color;
+  setMessage(msg);
+  submitBtn.value = "PLAY AGAIN";
+  submitBtn.classList.add("play-again");
 }
 
 function getRandomNum(min, max) {
